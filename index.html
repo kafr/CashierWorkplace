@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>РМК</title>   
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id = "body">
+    <table id = "table_main">
+        <!--Создаём строку-->
+        <tr>
+            <!--Создаём ячейку строки-->
+            <td>
+
+                <table id="table_top">
+                    <!--Создаём строку таблицы-->
+                    <tr>
+                        <!--Создаём столбец таблицы-->
+                        <th>
+                            <!--Содержание ячейки столбца-->
+                            <h3 id="clock">РМК</h3>
+                            
+                            <!--Закрываем таблицу-->
+                        </th>
+                    </tr>
+                </table>               
+                <table  id="table_mid">
+                    <!--Создаём строку-->
+                    <tr>
+
+                        <td rowspan="2" style="width:80%">
+                            <div  id="div_selected_items">
+                                <table id="table_selected_items">
+                                    <tr id = "tr_table_selected_items_header">
+                                        <th id = "th_item_table_selected_items_header">Товар</th>
+                                        <th id = "th_q_table_selected_items_header">К-ть</th>
+                                        <th id = "th_price_table_selected_items_header">Ціна</th>
+                                        <th id = "th_sum_table_selected_items_header">Сума</th>
+                                    </tr>
+                                    <tr class="tr_table_selected_items" id="tr_table_selected_items" itemcode="p_iPhone X" quantity="1" price="899">
+                                        <td id="td_item_table_selected_items">iPhone X</td>
+                                        <td id="td_q_table_selected_items">
+                                            <button class="btn_quantity" operName="minus">-</button>
+                                            1
+                                            <button class="btn_quantity" operName="plus">+</button>
+                                        </td>
+
+
+                                        <td id="td_price_table_selected_items">899</td>
+                                        <td id="td_sum_table_selected_items">899</td>
+                                    </tr>
+
+                                </table>
+                                <button onclick="Clear()" id = "btn_clear">Очистити</button>
+                            </div>
+
+                        </td>
+
+                        <!--САЙДБАР-->
+
+                        <!--Создаём ячейку сайдбара-->
+                        <td id = "table_items" >
+                            <h3>Товари</h3>
+                            <div  id="div_example">
+                                <button onclick="MyF()">Прочитати товари</button>
+                            </div>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="table_info">
+                            <h3>Залишки</h3>
+                            <p>Ціна, к-ть</p>    
+                        </td>
+                    </tr>
+
+
+                </table>
+                <!--ПОДВАЛ-->
+
+                <!--Создаём таблицу подвала-->
+                <table id = "table_hotkeys">
+                    <!--Создаём строку.-->
+                    <tr>
+                        <!--Создаём столбец-->
+                        <th>
+                            <h3>Hot items</h3>                            
+                        </th>
+                    </tr>
+                </table>
+                <!--Закрываем таблицу контейнера-->
+            </td>
+        </tr>
+    </table>
+</body>
+<script src="items.js"></script>
+</html>
