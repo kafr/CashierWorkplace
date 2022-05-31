@@ -113,7 +113,18 @@ button:hover {
      transition: 0.2s;
 }
 .btn_quantity{
-     max-width: 15%;
+     text-align: center;
+     width: 20px;
+     height: 20px;
+     max-width: 20px;
+     border-radius: 5px;
+}
+.btn_del_item{
+     width: 16px;
+     height: 16px;
+     max-width: 16px;
+     border-radius: 10px;
+     background-color: rgb(243, 149, 136);
 }
 
 

@@ -21,14 +21,12 @@ document.addEventListener('click', function (event) {
         let newP = document.createElement("tr");
 
         newP.innerHTML = ` <tr id = "tr_table_selected_items"> 
-        <td id = "td_item_table_selected_items">`+event.target.innerText+`</td>
+        <td id = "td_item_table_selected_items"><button class="btn_del_item" operName="del"> </button>`+event.target.innerText+`</td>
         <td id = "td_q_table_selected_items">
         <button class = "btn_quantity" operName="minus">-</button>
          1
         <button class = "btn_quantity" operName="plus">+</button>
         </td>
-        
-        
         <td id = "td_price_table_selected_items">`+event.target.attributes["price"].value+`</td> 
         <td id = "td_sum_table_selected_items">`+event.target.attributes["price"].value+`</td>
     </tr>`;
@@ -44,6 +42,10 @@ document.addEventListener('click', function (event) {
     if (event.target.className == "btn_quantity") {
         addQuantityByItem(event.target);
     }
+    if (event.target.className == "btn_del_item") {
+        DelItem(event.target);
+    }
+
 });
 
 function MyF() {
@@ -68,6 +70,13 @@ function Clear() {
     for (var i = 0; i < elements.length; ++i) {
         elements[i].remove();
     }
+}
+
+function DelItem(tar) {
+    console.dir(tar);
+    console.dir(tar.parentElement); //td
+    console.dir(tar.parentElement.parentElement); //tr
+    tar.parentElement.parentElement.remove();
 }
 
 function addQuantityByItem(tar){

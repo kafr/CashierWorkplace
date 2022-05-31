@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <title>РМК</title>   
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <!-- <link href="CashierWorkplace/style.css" rel="stylesheet" type="text/css">-->
+     <link href="style.css" rel="stylesheet" type="text/css">
+    
 </head>
 
 <body id = "body">
@@ -34,13 +36,15 @@
                             <div  id="div_selected_items">
                                 <table id="table_selected_items">
                                     <tr id = "tr_table_selected_items_header">
+                                        <th id = "th_number_table_selected_items_header">№</th>
                                         <th id = "th_item_table_selected_items_header">Товар</th>
                                         <th id = "th_q_table_selected_items_header">К-ть</th>
                                         <th id = "th_price_table_selected_items_header">Ціна</th>
                                         <th id = "th_sum_table_selected_items_header">Сума</th>
                                     </tr>
                                     <tr class="tr_table_selected_items" id="tr_table_selected_items" itemcode="p_iPhone X" quantity="1" price="899">
-                                        <td id="td_item_table_selected_items">iPhone X</td>
+                                        <td id="td_item_table_selected_items">
+                                            <button class="btn_del_item" operName="del"> </button>iPhone X</td>
                                         <td id="td_q_table_selected_items">
                                             <button class="btn_quantity" operName="minus">-</button>
                                             1
@@ -95,5 +99,6 @@
         </tr>
     </table>
 </body>
+<!--<script src="CashierWorkplace/items.js"></script>-->
 <script src="items.js"></script>
 </html>
