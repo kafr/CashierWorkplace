@@ -11,17 +11,35 @@ function clock() {
     setTimeout("clock()", 1000);
 }
 clock();
+function FindByAttributeValue(attribute, value, element_type)    {
+    element_type = element_type || "*";
+    var All = document.getElementsByTagName(element_type);
+    for (var i = 0; i < All.length; i++)       {
+        if (All[i].getAttribute(attribute) == value) { return All[i]; }
+    }
+}
 
-document.addEventListener('click', function (event) {
-    let s = event.target.id
-    s = s.substring(0, 2);
-    if (s == "p_") {
-        console.log(event.target.id)
+function addItemtoSelectedItemsTable(event) {
+    console.log(event.target.id)
+    let itemId = event.target.attributes["id"].value;
+    let sel = FindByAttributeValue("ItemCode",itemId,"tr");
+                                                    //"li[data-active='1']"
+    if (sel !== undefined) {
+        updateQuantity(sel);
+        return;
+    }
+    let newP = document.createElement("tr");
 
-        let newP = document.createElement("tr");
+    newP.id = "tr_table_selected_items";
+    newP.className = newP.id;
+    newP.setAttribute("ItemCode", event.target.attributes["id"].value);
+    newP.setAttribute("quantity", 1);
+    newP.setAttribute("price", Number(event.target.attributes["price"].value));
 
-        newP.innerHTML = ` 
-        <td id = "td_number_table_selected_items" number =>1</td>
+    let numberOfEl = document.getElementsByClassName(newP.id).length+1;
+
+    newP.innerHTML = ` 
+        <td id = "td_number_table_selected_items" number =>${numberOfEl}</td>
         <tr id = "tr_table_selected_items"> 
         <td id = "td_item_table_selected_items"><button class="btn_del_item" operName="del"> </button>`+event.target.innerText+`</td>
         <td id = "td_q_table_selected_items">
@@ -32,14 +50,30 @@ document.addEventListener('click', function (event) {
         <td id = "td_price_table_selected_items">`+event.target.attributes["price"].value+`</td> 
         <td id = "td_sum_table_selected_items">`+event.target.attributes["price"].value+`</td>
     </tr>`;
-        newP.id = "tr_table_selected_items";
-        newP.className = newP.id;
-        newP.setAttribute("ItemCode", event.target.attributes["id"].value);
-        newP.setAttribute("quantity", 1);
-        newP.setAttribute("price", Number(event.target.attributes["price"].value));
-        const div_example = document.getElementById("table_selected_items");
+    const div_example = document.getElementById("table_selected_items");
 
-        div_example.appendChild(newP)
+    div_example.appendChild(newP)
+}
+
+function updateQuantity(sel) {
+    let price = sel.attributes["price"].value;
+    let quantity = sel.attributes["quantity"].value;
+    quantity++
+    let sum = Number(quantity)*Number(price);
+    sel.attributes["quantity"].value = quantity;
+    sel.children[4].innerText = sum;
+    sel.children[2].innerHTML = `
+    <button class = "btn_quantity">-</button>
+         `+quantity+`
+        <button class = "btn_quantity">+</button>
+    `
+}
+
+document.addEventListener('click', function (event) {
+    let s = event.target.id
+    s = s.substring(0, 2);
+    if (s == "p_") {
+        addItemtoSelectedItemsTable(event);
     }
     if (event.target.className == "btn_quantity") {
         addQuantityByItem(event.target);
