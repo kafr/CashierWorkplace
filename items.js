@@ -20,7 +20,9 @@ document.addEventListener('click', function (event) {
 
         let newP = document.createElement("tr");
 
-        newP.innerHTML = ` <tr id = "tr_table_selected_items"> 
+        newP.innerHTML = ` 
+        <td id = "td_number_table_selected_items" number =>1</td>
+        <tr id = "tr_table_selected_items"> 
         <td id = "td_item_table_selected_items"><button class="btn_del_item" operName="del"> </button>`+event.target.innerText+`</td>
         <td id = "td_q_table_selected_items">
         <button class = "btn_quantity" operName="minus">-</button>
@@ -92,7 +94,7 @@ function addQuantityByItem(tar){
     tar.parentElement.parentElement.remove();
     return
 }   let sum = Number(quantity)*Number(price);
-    tar.parentElement.parentElement.children[3].innerText = sum;
+    tar.parentElement.parentElement.children[4].innerText = sum;
 
     tar.parentElement.parentElement.attributes["quantity"].value = quantity;
     tar.parentElement.innerHTML = `

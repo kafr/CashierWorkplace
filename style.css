@@ -63,7 +63,9 @@
      padding: 2px;
      border-radius: 3px;
 }
-
+#td_number_table_selected_items{
+     text-align: center;
+}
 #table_hotkeys {
      border: 1; 
      background-color:#7FFFD4;
