@@ -42,7 +42,7 @@
                                         <th id = "th_price_table_selected_items_header">Ціна</th>
                                         <th id = "th_sum_table_selected_items_header">Сума</th>
                                     </tr>
-                                    <tr class="tr_table_selected_items" id="tr_table_selected_items" itemcode="p_iPhone X" quantity="1" price="899">
+                                    <tr class="tr_table_selected_items" id="tr_table_selected_items" itemcode="p_iPhone X" quantity="1" price="899" sum="899">
                                         <td id = "td_number_table_selected_items" number = 1>1</td>
                                         <td id="td_item_table_selected_items">
                                             <button class="btn_del_item" operName="del"> </button>iPhone X</td>
@@ -56,7 +56,7 @@
                                     </tr>
 
                                 </table>
-                                <button onclick="Clear()" id = "btn_clear">Очистити</button>
+
                             </div>
 
                         </td>
@@ -67,20 +67,19 @@
                         <td id = "table_items" >
                             <h3>Товари</h3>
                             <div  id="div_example">
-                                <button onclick="MyF()">Прочитати товари</button>
+                                <button onclick="addItems()">Синхронізувати товари</button>
                             </div>
                             </ul>
                         </td>
                     </tr>
-                    <tr>
-                        <td id="table_info">
-                            <h3>Залишки</h3>
-                            <p>Ціна, к-ть</p>    
-                        </td>
-                    </tr>
-
-
                 </table>
+
+                <div class = "div_bottom">
+                    <h4>Загальна сума:<label id="totalSum"></label></h4>
+                    <button onclick="Clear()" id = "btn_bill"  class = "btn_bottom">Чек</button>
+                    <button onclick="Clear()" id = "btn_clear" class = "btn_bottom">Очистити</button>
+
+                </div>
                 <!--ПОДВАЛ-->
 
                 <!--Создаём таблицу подвала-->

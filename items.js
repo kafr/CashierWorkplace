@@ -10,7 +10,20 @@ function clock() {
     document.getElementById("clock").innerHTML = "РМК, Користувач: Admin,  " + hours + ":" + minutes + ":" + seconds;
     setTimeout("clock()", 1000);
 }
+
 clock();
+updateSum();
+
+
+function updateSum(attribute = "sum"){
+    let sum = 0;
+    var All = document.getElementsByClassName("tr_table_selected_items");
+    for (var i = 0; i < All.length; i++)       {
+        sum = Number(sum)+Number(All[i].getAttribute(attribute)) ;
+    }
+    document.getElementById('totalSum').innerText = '  '+sum+" грн";
+}
+
 function FindByAttributeValue(attribute, value, element_type)    {
     element_type = element_type || "*";
     var All = document.getElementsByTagName(element_type);
@@ -22,8 +35,7 @@ function FindByAttributeValue(attribute, value, element_type)    {
 function addItemtoSelectedItemsTable(event) {
     console.log(event.target.id)
     let itemId = event.target.attributes["id"].value;
-    let sel = FindByAttributeValue("ItemCode",itemId,"tr");
-                                                    //"li[data-active='1']"
+    let sel = FindByAttributeValue("itemcode",itemId,"tr");
     if (sel !== undefined) {
         updateQuantity(sel);
         return;
@@ -35,7 +47,7 @@ function addItemtoSelectedItemsTable(event) {
     newP.setAttribute("ItemCode", event.target.attributes["id"].value);
     newP.setAttribute("quantity", 1);
     newP.setAttribute("price", Number(event.target.attributes["price"].value));
-
+    newP.setAttribute("sum", Number(event.target.attributes["price"].value));
     let numberOfEl = document.getElementsByClassName(newP.id).length+1;
 
     newP.innerHTML = ` 
@@ -53,6 +65,7 @@ function addItemtoSelectedItemsTable(event) {
     const div_example = document.getElementById("table_selected_items");
 
     div_example.appendChild(newP)
+    updateSum();
 }
 
 function updateQuantity(sel) {
@@ -61,12 +74,14 @@ function updateQuantity(sel) {
     quantity++
     let sum = Number(quantity)*Number(price);
     sel.attributes["quantity"].value = quantity;
+    sel.attributes["sum"].value = sum;
     sel.children[4].innerText = sum;
     sel.children[2].innerHTML = `
     <button class = "btn_quantity">-</button>
          `+quantity+`
         <button class = "btn_quantity">+</button>
     `
+    updateSum();
 }
 
 document.addEventListener('click', function (event) {
@@ -84,9 +99,6 @@ document.addEventListener('click', function (event) {
 
 });
 
-function MyF() {
-    addItems()
-}
 
 function Clear() {
    let elements = document.getElementsByClassName("tr_table_selected_items");
@@ -106,6 +118,7 @@ function Clear() {
     for (var i = 0; i < elements.length; ++i) {
         elements[i].remove();
     }
+    updateSum();
 }
 
 function DelItem(tar) {
@@ -113,6 +126,7 @@ function DelItem(tar) {
     console.dir(tar.parentElement); //td
     console.dir(tar.parentElement.parentElement); //tr
     tar.parentElement.parentElement.remove();
+    updateSum();
 }
 
 function addQuantityByItem(tar){
@@ -131,6 +145,7 @@ function addQuantityByItem(tar){
     tar.parentElement.parentElement.children[4].innerText = sum;
 
     tar.parentElement.parentElement.attributes["quantity"].value = quantity;
+    tar.parentElement.parentElement.attributes["sum"].value = sum;
     tar.parentElement.innerHTML = `
     <button class = "btn_quantity">-</button>
          `+quantity+`
@@ -138,8 +153,7 @@ function addQuantityByItem(tar){
     `
 
     console.log("Change price, quantity, total of el:  ",tar, quantity,price);
-
-
+    updateSum();
 }
 
 async function addItems() {
@@ -166,5 +180,6 @@ async function addItems() {
 
         div_example.appendChild(newP)
     }
+    updateSum();
 }
 
