@@ -5,11 +5,12 @@
     <meta charset="utf-8" />
     <title>РМК</title>   
     <!-- <link href="CashierWorkplace/style.css" rel="stylesheet" type="text/css">-->
-     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="main.css" rel="stylesheet" type="text/css">
     
 </head>
 
 <body id = "body">
+
     <table id = "table_main">
         <!--Создаём строку-->
         <tr>
@@ -64,10 +65,11 @@
                         <!--САЙДБАР-->
 
                         <!--Создаём ячейку сайдбара-->
-                        <td id = "table_items" >
+                        <td class = 'table_items' >
                             <h3>Товари</h3>
-                            <div  id="div_example">
-                                <button onclick="addItems()">Синхронізувати товари</button>
+                            <div  id="div_example" class="unselectable">
+                                <button class="btn_sync" onclick="addItems()">Синхронізувати товари</button>
+                                <input type="text" oninput="searchByInput()" id="searchTerm"    class="searchTerm" placeholder="Пошук">
                             </div>
                             </ul>
                         </td>
@@ -76,22 +78,17 @@
 
                 <div class = "div_bottom">
                     <h4>Загальна сума:<label id="totalSum"></label></h4>
-                    <button onclick="Clear()" id = "btn_bill"  class = "btn_bottom">Чек</button>
+                    <button onclick="CreateBill()" id = "btn_bill"  class = "btn_bottom">Чек</button>
                     <button onclick="Clear()" id = "btn_clear" class = "btn_bottom">Очистити</button>
 
                 </div>
                 <!--ПОДВАЛ-->
-
+             
                 <!--Создаём таблицу подвала-->
-                <table id = "table_hotkeys">
-                    <!--Создаём строку.-->
-                    <tr>
-                        <!--Создаём столбец-->
-                        <th>
-                            <h3>Hot items</h3>                            
-                        </th>
-                    </tr>
-                </table>
+                
+                    <div id="hotitems"></div>
+                    
+                                                              
                 <!--Закрываем таблицу контейнера-->
             </td>
         </tr>
